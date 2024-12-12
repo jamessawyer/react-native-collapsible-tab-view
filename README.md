@@ -5,38 +5,46 @@
 [![MIT License][license-badge]][license]
 [![Runs with Expo][expo-badge]][expo]
 
-- [Expo App](#expo-app)
+- [React Native Collapsible Tab View](#react-native-collapsible-tab-view)
+  - [🚀 Version 6 released with Reanimated v3 support](#-version-6-released-with-reanimated-v3-support)
 - [Demo](#demo)
 - [Features](#features)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
 - [Guides](#guides)
-  - [Scroll on Header](#scroll-on-header)
+  - [Scrolling on the Header](#scrolling-on-the-header)
 - [API Reference](#api-reference)
   - [Core](#core)
     - [Tabs.Container](#tabscontainer)
+      - [Props](#props)
+    - [Tabs.Tab](#tabstab)
+      - [Props](#props-1)
     - [Tabs.Lazy](#tabslazy)
+      - [Props](#props-2)
     - [Tabs.FlatList](#tabsflatlist)
-    - [Tabs.FlashList](#tabsflatlist)
-    - [Tabs.MasonryFlashList](#tabsmasonryflatlist)
-    - [Tabs.SectionList](#tabssectionlist)
+    - [Tabs.FlashList](#tabsflashlist)
+    - [Tabs.MasonryFlashList](#tabsmasonryflashlist)
     - [Tabs.ScrollView](#tabsscrollview)
+    - [Tabs.SectionList](#tabssectionlist)
     - [Ref](#ref)
   - [Hooks](#hooks)
-    - [useCollapsibleStyle](#usecollapsiblestyle)
-    - [useAnimatedTabIndex](#useanimatedtabindex)
-    - [useFocusedTab](#usefocusedtab)
-    - [useHeaderMeasurements](#useheadermeasurements)
+    - [`useCollapsibleStyle`](#usecollapsiblestyle)
+      - [Values](#values)
+    - [`useAnimatedTabIndex`](#useanimatedtabindex)
+    - [`useFocusedTab`](#usefocusedtab)
+    - [`useHeaderMeasurements`](#useheadermeasurements)
+    - [useCurrentTabScrollY](#usecurrenttabscrolly)
   - [Default Tab Bar](#default-tab-bar)
-    - [MaterialTabBar](#materialtabbar)
     - [MaterialTabItem](#materialtabitem)
+    - [IndicatorComponent](#indicatorcomponent)
+      - [Props](#props-3)
 - [Known Issues](#known-issues)
   - [Android FlatList Pull to Refresh](#android-flatlist-pull-to-refresh)
-  - [iOS FlatList StickyHeaderIndices](#ios-flatlist-stickyheaderindices)
-  - [ref.setIndex](#refsetindex)
+  - [iOS FlatList StickyHeaderIndices and iOS SectionList StickySectionHeadersEnabled](#ios-flatlist-stickyheaderindices-and-ios-sectionlist-stickysectionheadersenabled)
+  - [`ref.setIndex`](#refsetindex)
 - [Alternative Libraries](#alternative-libraries)
-- [Contributing](#contributing)
-  - [Documentation Changes](#documentation-changes)
+- [Contributing and running the Example](#contributing-and-running-the-example)
+  - [Documentation changes](#documentation-changes)
 
 ## 🚀 Version 6 released with Reanimated v3 support
 
@@ -336,6 +344,31 @@ const scrollY = useCurrentTabScrollY()
 ### MaterialTabItem
 
 Any additional props are passed to the pressable component.
+
+### IndicatorComponent
+To custom `MaterialTabBar` indicator we can use `IndicatorComponent` as a prop of `MaterialTabBar`.
+```tsx
+  const CustomTabbar = useCallback(
+    (props) => {
+      return (
+        <MaterialTabBar
+          {...props}
+          TabItemComponent={CustomTabItem}
+          IndicatorComponent={CustomTabIndicator}
+        />
+      )
+    },
+    []
+  )
+
+  return (
+    <Tabs.Container
+      renderTabBar={CustomTabbar}
+    >
+    ...
+    </Tabs.Container>
+  )
+```
 
 #### Props
 

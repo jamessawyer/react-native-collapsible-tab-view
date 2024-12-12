@@ -1,9 +1,3 @@
-import React from 'react'
-import {
-  StyleSheet,
-  useWindowDimensions,
-  LayoutChangeEvent,
-} from 'react-native'
 import Animated, {
   cancelAnimation,
   scrollTo,
@@ -13,10 +7,16 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated'
+import { ItemLayout, MaterialTabBarProps } from './types'
+import {
+  LayoutChangeEvent,
+  StyleSheet,
+  useWindowDimensions,
+} from 'react-native'
 
 import { Indicator } from './Indicator'
 import { MaterialTabItem } from './TabItem'
-import { MaterialTabBarProps, ItemLayout } from './types'
+import React from 'react'
 import { TabName } from '../types'
 
 export const TABBAR_HEIGHT = 48
@@ -48,6 +48,7 @@ const MaterialTabBar = <T extends TabName = TabName>({
   indicatorStyle,
   index,
   TabItemComponent = MaterialTabItem,
+  IndicatorComponent = Indicator,
   getLabelText = (name) => String(name).toUpperCase(),
   onTabPress,
   style,
@@ -222,7 +223,7 @@ const MaterialTabBar = <T extends TabName = TabName>({
         )
       })}
       {itemsLayout.length === nTabs && (
-        <Indicator
+        <IndicatorComponent
           indexDecimal={indexDecimal}
           itemsLayout={itemsLayout}
           fadeIn={scrollEnabled}

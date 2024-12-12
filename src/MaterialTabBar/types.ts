@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   LayoutChangeEvent,
   PressableProps,
@@ -6,9 +5,10 @@ import {
   TextStyle,
   ViewStyle,
 } from 'react-native'
-import Animated from 'react-native-reanimated'
+import { TabBarProps, TabItemProps, TabName } from '../types'
 
-import { TabBarProps, TabName, TabItemProps } from '../types'
+import Animated from 'react-native-reanimated'
+import React from 'react'
 
 type AnimatedStyle = StyleProp<Animated.AnimateStyle<ViewStyle>>
 type AnimatedTextStyle = StyleProp<Animated.AnimateStyle<TextStyle>>
@@ -49,6 +49,10 @@ export type MaterialTabBarProps<N extends TabName> = TabBarProps<N> & {
    * React component to render as tab bar item
    */
   TabItemComponent?: (props: MaterialTabItemProps<N>) => React.ReactElement
+  /**
+   * React component to render as indicator
+   */
+  IndicatorComponent?: React.FC<IndicatorProps>
   /**
    * Function to compute the tab item label text
    */
